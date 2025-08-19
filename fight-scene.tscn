@@ -1,0 +1,110 @@
+[gd_scene load_steps=7 format=3 uid="uid://c5aleh55rakgd"]
+
+[ext_resource type="Script" path="res://character_body_2d.gd" id="1_28c5t"]
+[ext_resource type="Texture2D" uid="uid://cra4bil4lcl3m" path="res://icon.svg" id="2_3k6lr"]
+[ext_resource type="Script" path="res://CombatManager.gd" id="3_35pqq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jlm30"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g13jb"]
+
+[sub_resource type="Theme" id="Theme_v0mla"]
+
+[node name="MainScene" type="Node2D"]
+
+[node name="PlayerFighter" type="CharacterBody2D" parent="."]
+script = ExtResource("1_28c5t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerFighter"]
+shape = SubResource("RectangleShape2D_jlm30")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerFighter"]
+position = Vector2(-249, -96)
+texture = ExtResource("2_3k6lr")
+
+[node name="PlayerHealth" type="ProgressBar" parent="PlayerFighter"]
+offset_left = 147.0
+offset_top = -228.0
+offset_right = 353.0
+offset_bottom = -201.0
+
+[node name="Label" type="Label" parent="PlayerFighter"]
+offset_left = -286.0
+offset_top = -294.0
+offset_right = -237.0
+offset_bottom = -271.0
+scale = Vector2(1.5, 1.5)
+text = "Player
+"
+
+[node name="OpponentFighter" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OpponentFighter"]
+shape = SubResource("RectangleShape2D_g13jb")
+
+[node name="Sprite2D" type="Sprite2D" parent="OpponentFighter/CollisionShape2D"]
+modulate = Color(1, 0.167255, 0.180728, 1)
+position = Vector2(249, -92)
+texture = ExtResource("2_3k6lr")
+
+[node name="OpponentHealth" type="ProgressBar" parent="OpponentFighter"]
+offset_left = -350.0
+offset_top = -232.0
+offset_right = -145.0
+offset_bottom = -205.0
+
+[node name="Label" type="Label" parent="OpponentFighter"]
+offset_left = 188.0
+offset_top = -297.0
+offset_right = 267.0
+offset_bottom = -271.0
+scale = Vector2(1.5, 1.5)
+theme = SubResource("Theme_v0mla")
+text = "Opponent"
+
+[node name="CombatManager" type="Node" parent="."]
+script = ExtResource("3_35pqq")
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="."]
+offset_left = 125.0
+offset_top = 50.0
+offset_right = 217.0
+offset_bottom = 116.0
+
+[node name="Button2" type="Button" parent="VBoxContainer3"]
+layout_mode = 2
+text = "Defense"
+
+[node name="Button" type="Button" parent="VBoxContainer3"]
+layout_mode = 2
+text = "Movement"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+offset_left = 25.0
+offset_top = 50.0
+offset_right = 117.0
+offset_bottom = 116.0
+
+[node name="Button2" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
+text = "Attack"
+
+[node name="Button" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
+text = "Clinch"
+
+[node name="CombatLogContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CombatLogContainer"]
+layout_mode = 0
+offset_left = -325.0
+offset_top = 50.0
+offset_right = -16.0
+offset_bottom = 111.0
+
+[node name="Label" type="Label" parent="CombatLogContainer/ScrollContainer"]
+layout_mode = 2

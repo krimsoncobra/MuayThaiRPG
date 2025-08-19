@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://bygha78hkbxii"]
+
+[ext_resource type="Script" path="res://character_body_2d.gd" id="1_ojwa1"]
+[ext_resource type="Texture2D" uid="uid://cra4bil4lcl3m" path="res://icon.svg" id="2_3u75h"]
+[ext_resource type="Script" path="res://CombatManager.gd" id="3_d5o0p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jlm30"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g13jb"]
+
+[node name="MainScene" type="Node2D"]
+
+[node name="PlayerFighter" type="CharacterBody2D" parent="."]
+script = ExtResource("1_ojwa1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerFighter"]
+shape = SubResource("RectangleShape2D_jlm30")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerFighter"]
+texture = ExtResource("2_3u75h")
+
+[node name="PlayerHealth" type="ProgressBar" parent="PlayerFighter"]
+offset_right = 4.0
+offset_bottom = 27.0
+
+[node name="OpponentFighter" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OpponentFighter"]
+shape = SubResource("RectangleShape2D_g13jb")
+
+[node name="Sprite2D" type="Sprite2D" parent="OpponentFighter/CollisionShape2D"]
+
+[node name="OpponentHealth" type="ProgressBar" parent="OpponentFighter"]
+offset_right = 4.0
+offset_bottom = 27.0
+
+[node name="CombatManager" type="Node" parent="."]
+script = ExtResource("3_d5o0p")
