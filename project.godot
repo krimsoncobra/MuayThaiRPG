@@ -11,9 +11,19 @@ config_version=5
 [application]
 
 config/name="MartialArtsRPG"
+<<<<<<< HEAD
 run/main_scene="res://fight-scene.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
+=======
+run/main_scene="res://Scenes/fight-scene.tscn"
+config/features=PackedStringArray("4.3", "Mobile")
+config/icon="res://Assets/icon.svg"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/aseprite_importer/plugin.cfg")
+>>>>>>> 609a2c5 (Added player image in fighter scene, filing system, new OppFighter scripts & modified all scripts)
 
 [input]
 
