@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://c5aleh55rakgd"]
+[gd_scene load_steps=10 format=3 uid="uid://c5aleh55rakgd"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerFighter.gd" id="1_glqhh"]
+[ext_resource type="Script" path="res://Scenes/UiManager.gd" id="2_aw473"]
 [ext_resource type="Texture2D" uid="uid://2bthjhfv72k8" path="res://Assets/Fighter-Behind.png" id="2_ric33"]
 [ext_resource type="Script" path="res://Scripts/OpponentFighter.gd" id="3_1xuvs"]
-[ext_resource type="Texture2D" uid="uid://cra4bil4lcl3m" path="res://Assets/icon.svg" id="4_b5hbc"]
 [ext_resource type="Script" path="res://Scripts/CombatManager.gd" id="5_sfme4"]
+[ext_resource type="Texture2D" uid="uid://d2e6ji6dgfkyn" path="res://Assets/Opponent-Check.png" id="6_kxrl5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jlm30"]
 
@@ -14,6 +15,12 @@
 
 [node name="MainScene" type="Node2D"]
 
+[node name="CombatManager" type="Node" parent="."]
+script = ExtResource("5_sfme4")
+
+[node name="UIManager" type="Node" parent="."]
+script = ExtResource("2_aw473")
+
 [node name="PlayerFighter" type="CharacterBody2D" parent="."]
 script = ExtResource("1_glqhh")
 
@@ -21,24 +28,10 @@ script = ExtResource("1_glqhh")
 shape = SubResource("RectangleShape2D_jlm30")
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerFighter"]
-position = Vector2(-184, -93)
+position = Vector2(-175, 133)
 texture = ExtResource("2_ric33")
 
-[node name="PlayerHealth" type="ProgressBar" parent="PlayerFighter"]
-offset_left = 358.0
-offset_top = -339.0
-offset_right = 564.0
-offset_bottom = -312.0
-fill_mode = 1
-
-[node name="Label" type="Label" parent="PlayerFighter"]
-offset_left = -432.0
-offset_top = -44.0
-offset_right = -383.0
-offset_bottom = -21.0
-scale = Vector2(1.5, 1.5)
-text = "Player
-"
+[node name="Camera2D" type="Camera2D" parent="PlayerFighter"]
 
 [node name="OpponentFighter" type="CharacterBody2D" parent="."]
 script = ExtResource("3_1xuvs")
@@ -47,71 +40,86 @@ script = ExtResource("3_1xuvs")
 shape = SubResource("RectangleShape2D_g13jb")
 
 [node name="Sprite2D" type="Sprite2D" parent="OpponentFighter/CollisionShape2D"]
-modulate = Color(1, 0.167255, 0.180728, 1)
-position = Vector2(170, -273)
-texture = ExtResource("4_b5hbc")
+position = Vector2(261, -112)
+texture = ExtResource("6_kxrl5")
 
-[node name="OpponentHealth" type="ProgressBar" parent="OpponentFighter"]
-offset_left = -491.0
-offset_top = 5.0
-offset_right = -286.0
-offset_bottom = 32.0
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Def,Move" type="VBoxContainer" parent="CanvasLayer/Control"]
+offset_left = 125.0
+offset_top = 230.0
+offset_right = 217.0
+offset_bottom = 296.0
+
+[node name="Defense" type="Button" parent="CanvasLayer/Control/Def,Move"]
+layout_mode = 2
+text = "Defense"
+
+[node name="Movement" type="Button" parent="CanvasLayer/Control/Def,Move"]
+layout_mode = 2
+text = "Movement"
+
+[node name="Att, Clinch" type="VBoxContainer" parent="CanvasLayer/Control"]
+offset_left = 25.0
+offset_top = 230.0
+offset_right = 117.0
+offset_bottom = 296.0
+
+[node name="Attack" type="Button" parent="CanvasLayer/Control/Att, Clinch"]
+layout_mode = 2
+text = "Attack"
+
+[node name="Clinch" type="Button" parent="CanvasLayer/Control/Att, Clinch"]
+layout_mode = 2
+text = "Clinch"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control"]
+offset_left = -570.0
+offset_top = -319.845
+offset_right = -261.0
+offset_bottom = -163.845
+scale = Vector2(2, 2)
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/ScrollContainer"]
+layout_mode = 2
+text = "Fighters Ready? Fight! "
+
+[node name="CanvasLayer" type="CanvasLayer" parent="CanvasLayer"]
+
+[node name="OpponentHealth" type="ProgressBar" parent="CanvasLayer/CanvasLayer"]
+offset_left = -464.0
+offset_top = 264.0
+offset_right = -259.0
+offset_bottom = 291.0
 fill_mode = 1
 
-[node name="Label" type="Label" parent="OpponentFighter"]
-offset_left = 403.0
-offset_top = -381.0
-offset_right = 482.0
-offset_bottom = -355.0
+[node name="Opponent Name" type="Label" parent="CanvasLayer/CanvasLayer"]
+offset_left = 344.0
+offset_top = -300.0
+offset_right = 423.0
+offset_bottom = -274.0
 scale = Vector2(1.5, 1.5)
 theme = SubResource("Theme_v0mla")
 text = "Opponent"
 
-[node name="CombatManager" type="Node" parent="."]
-script = ExtResource("5_sfme4")
+[node name="Player Name" type="Label" parent="CanvasLayer/CanvasLayer"]
+offset_left = -408.0
+offset_top = 220.0
+offset_right = -359.0
+offset_bottom = 243.0
+scale = Vector2(1.5, 1.5)
+text = "Player
+"
 
-[node name="CombatLogContainer" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_top = 0.155
-offset_right = 40.0
-offset_bottom = 40.155
-
-[node name="ScrollContainer" type="ScrollContainer" parent="CombatLogContainer"]
-layout_mode = 0
-offset_left = -285.84
-offset_top = 50.0
-offset_right = 23.16
-offset_bottom = 111.0
-
-[node name="Label" type="Label" parent="CombatLogContainer/ScrollContainer"]
-layout_mode = 2
-text = "Fighters Ready? Fight! "
-
-[node name="Att, Clinch" type="VBoxContainer" parent="."]
-offset_left = 25.0
-offset_top = 50.0
-offset_right = 117.0
-offset_bottom = 116.0
-
-[node name="Button2" type="Button" parent="Att, Clinch"]
-layout_mode = 2
-text = "Attack"
-
-[node name="Button" type="Button" parent="Att, Clinch"]
-layout_mode = 2
-text = "Clinch"
-
-[node name="Def,Move" type="VBoxContainer" parent="."]
-offset_left = 125.0
-offset_top = 50.0
-offset_right = 217.0
-offset_bottom = 116.0
-
-[node name="Button2" type="Button" parent="Def,Move"]
-layout_mode = 2
-text = "Defense"
-
-[node name="Button" type="Button" parent="Def,Move"]
-layout_mode = 2
-text = "Movement"
+[node name="PlayerHealth" type="ProgressBar" parent="CanvasLayer/CanvasLayer"]
+offset_left = 299.0
+offset_top = -259.0
+offset_right = 505.0
+offset_bottom = -232.0
+fill_mode = 1

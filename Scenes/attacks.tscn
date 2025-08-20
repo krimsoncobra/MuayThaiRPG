@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://deq615p2kkydj"]
+
+[node name="Attacks" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 195.0
+offset_right = 381.0
+offset_bottom = 136.0
+
+[node name="Cross" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
+text = "Cross"
+
+[node name="Uppercut" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
+text = "Uppercut"
+
+[node name="Knee" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
+text = "Knee"
+
+[node name="Teep" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
+text = "Teep"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 186.0
+offset_bottom = 376.0
+
+[node name="Jab" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Jab"
+
+[node name="Hook" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Hook"
+
+[node name="Elbow" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Elbow"
+
+[node name="Round Kick" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Round Kick"

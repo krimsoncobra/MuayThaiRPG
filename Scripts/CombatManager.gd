@@ -32,6 +32,14 @@ func process_turn(action):
 		turn = "player"
 	update_ui()
 
+func opponent_turn():
+	var opp_action = opponent_fighter.choose_action()
+	execute_action(opponent_fighter, player_fighter, opp_action)
+	if check_end_conditions():
+		return
+	turn = "player"
+	update_ui()
+
 func execute_action(attacker, defender, action):
 	var damage = calculate_damage(attacker, defender, action)
 	defender.health -= damage
